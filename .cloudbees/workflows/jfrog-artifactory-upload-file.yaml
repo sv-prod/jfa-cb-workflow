@@ -21,7 +21,7 @@ jobs:
         name: Build and push container image to JFrog
         uses: cloudbees-io/kaniko@v1
         with:
-          destination: cbjfrog.saas-preprod.beescloud.com/jfrog-test-docker-target-repo/test-image:1.11
+          destination: cbjfrog.saas-preprod.beescloud.com/jfrog-test-docker-target-repo/test-image:1.0.1
           build-args: USER=cbp-dev,TOKEN=${{ secrets.GH_SECURITY_PAT }}
           context: ${{ cloudbees.workspace }}
           dockerfile: Dockerfile
