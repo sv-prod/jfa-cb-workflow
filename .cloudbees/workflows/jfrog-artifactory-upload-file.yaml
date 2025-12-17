@@ -1,24 +1,22 @@
 name: jfrog-artifactory-upload-file
 kind: workflow
 apiVersion: automation.cloudbees.io/v1alpha1
-
 on:
   push:
     branches:
       - prasen-upload
+  workflow_dispatch:
 jobs:
   upload-file-job:
     steps:
       - name: checkout-source-code
         uses: cloudbees-io/checkout@v1
-
       - name: Configure JFrog OCI credentials
         uses: cloudbees-io/configure-oci-credentials@v1
         with:
           registry: cbjfrog.saas-preprod.beescloud.com
           username: admin
           password: ${{ secrets.JFROG_TOKEN }}
-
       - id: build-container
         name: Build and push container image to JFrog
         uses: cloudbees-io/kaniko@v1
